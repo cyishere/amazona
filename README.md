@@ -8,6 +8,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 4: Add product details](#step-4-add-product-details)
 - [Step 5: Create backend server with Node & Express](#step-5-create-backend-server-with-node--express)
 - [Step 6: Fetch data from the server.](#step-6-fetch-data-from-the-server)
+- [Step 7: Manage state with Redux](#step-7-manage-state-with-redux)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -95,3 +96,34 @@ And add this script to `package.json` file, make sure "`nodemon` only watch the 
 On the branch "fetch-server-data";
 
 Use React Hook & `axios`. First, set proxy in `/frontend/package.json`.
+
+## Step 7: Manage state with Redux
+
+On the branch "manage-state-with-redux";
+
+### 1) Create `store.js`
+
+- use `combineReducers` to define reducer;
+- use `compose (composeEnhancer)` to call the Chrome Devtools and `thunk` middleware which allows us to use async operations in actions;
+- use `createStore` to create `store`;
+
+### 2) Add highest wrapper `<Provider store={store} />` in `index.js`
+
+### 3) Define the reducers
+
+Create a reducer function in `./reducers/productReducers.js` with the name as same as we used in the `combineReducers` of the `store.js` file;
+
+And with 2 parameters, the first is the initial state, the 2nd is the `action`; then use `switch` method to excute actions.
+
+### 4) Define the actions
+
+Create the actions in `./actions/productActions.js`, with the function named `listProducts` which could describe the action; then use `dispatch` to dispatch the actions in the reducer (`./reducers/productReducers.js`).
+
+### 5) Fetch products by using Redux state
+
+- Get rid off `[products, setProducts]`;
+- use `useSelector` to get `productList` which we defined in the `store` (`store.js`);
+- destruct the main properties in the `productList` which are `products, loading, error`; (The property's name `products` defined in the reducer.)
+- use `useDispatch` to dispatch the **action** which defined in the `productActions.js` file to get the products data;
+
+**[NOTE]** Don't forget to define the action types in `./constants/productConstants.js`.

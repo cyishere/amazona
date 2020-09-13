@@ -2,24 +2,29 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 15:42:40
+ * @Last Modified time: 2020-09-13 16:51:58
  */
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import HomeScreen from "./components/HomeScreen";
 import ProductScreen from "./components/ProductScreen";
+import { listProducts } from "./actions/productActions";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
-  const fetchData = async () => {
-    const { data } = await axios.get("/api/products");
-    setProducts(data);
-  };
+  const productList = useSelector((state) => state.productList);
+  const { products, loading, error } = productList;
+  const dispatch = useDispatch();
+
+  // const fetchData = async () => {
+  //   const { data } = await axios.get("/api/products");
+  //   setProducts(data);
+  // };
 
   useEffect(() => {
-    fetchData();
+    dispatch(listProducts());
   }, []);
 
   const openMenu = () => {
@@ -67,7 +72,7 @@ const App = () => {
               <ProductScreen products={products} />
             </Route>
             <Route exact path="/">
-              <HomeScreen products={products} />
+              <HomeScreen products={products} loading={loading} error={error} />
             </Route>
           </div>
         </main>
