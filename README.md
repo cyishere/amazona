@@ -113,7 +113,7 @@ On the branch "manage-state-with-redux";
 
 Create a reducer function in `./reducers/productReducers.js` with the name as same as we used in the `combineReducers` of the `store.js` file;
 
-And with 2 parameters, the first is the initial state, the 2nd is the `action`; then use `switch` method to excute actions.
+And with 2 parameters, the first is the initial state, the 2nd is the `action`; then use `switch` method to execute actions.
 
 ### 4) Define the actions
 
@@ -121,9 +121,9 @@ Create the actions in `./actions/productActions.js`, with the function named `li
 
 ### 5) Fetch products by using Redux state
 
-- Get rid off `[products, setProducts]`;
+- Get rid of `[products, setProducts]`;
 - use `useSelector` to get `productList` which we defined in the `store` (`store.js`);
-- destruct the main properties in the `productList` which are `products, loading, error`; (The property's name `products` defined in the reducer.)
-- use `useDispatch` to dispatch the **action** which defined in the `productActions.js` file to get the products data;
+- destruct the main properties in the `productList` which are `products, loading, error`; (The properties' are defined in the reducer.)
+- use `useDispatch` in the `useEffect` to dispatch the **action** which defined in the `productActions.js` file to get the products data;
 
 **[NOTE]** Don't forget to define the action types in `./constants/productConstants.js`.
