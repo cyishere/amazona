@@ -49,3 +49,36 @@ const ProductScreen = ({ data }) => {
   // ...
 };
 ```
+
+## Step 5: Create backend server with Node & Express
+
+On the branch "node-express-server";
+
+Use `babel` to make ES6 available in Node. Because in this tutorial we use ES6 in Node.
+
+```bash
+yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env
+```
+
+then add the `.babelrc` file at the root of directory.
+
+```
+// ./.bablerc
+{
+  "presets": [
+    [
+      "@babel/preset-node"
+    ]
+  ]
+}
+```
+
+And add this script to `package.json` file, make sure "`nodemon` only watch the `/backend` directory and `execute` the following command.
+
+```json
+{
+  "scripts": {
+    "server": "nodemon --watch backend --exec babel-node backend/server.js"
+  }
+}
+```
