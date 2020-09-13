@@ -9,6 +9,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 5: Create backend server with Node & Express](#step-5-create-backend-server-with-node--express)
 - [Step 6: Fetch data from the server.](#step-6-fetch-data-from-the-server)
 - [Step 7: Manage state with Redux](#step-7-manage-state-with-redux)
+- [Step 8: Add Reduct to Details](#step-8-add-reduct-to-details)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -127,3 +128,20 @@ Create the actions in `./actions/productActions.js`, with the function named `li
 - use `useDispatch` in the `useEffect` to dispatch the **action** which defined in the `productActions.js` file to get the products data;
 
 **[NOTE]** Don't forget to define the action types in `./constants/productConstants.js`.
+
+## Step 8: Add Reduct to Details
+
+On the branch "add-redux-to-details";
+
+- refactor product details to Redux version;
+- inplement `handleAddToCart()`;
+
+Because of the state has 3 properties, in the reducer the initial state is `state={ product: {} }` to present object like this:
+
+```js
+state = {
+  product: {},
+  loading: false,
+  error: "",
+};
+```
