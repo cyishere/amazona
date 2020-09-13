@@ -2,6 +2,13 @@
 
 Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in 5 Hours [2020]](https://www.youtube.com/watch?v=Fy9SdZLBTOo)
 
+- [Step 1: Make a HTML/CSS template of this app](#step-1-make-a-htmlcss-template-of-this-app)
+- [Step 2: Add React Frontend](#step-2-add-react-frontend)
+- [Step 3: Render products in jsx](#step-3-render-products-in-jsx)
+- [Step 4: Add product details](#step-4-add-product-details)
+- [Step 5: Create backend server with Node & Express](#step-5-create-backend-server-with-node--express)
+- [Step 6: Fetch data from the server.](#step-6-fetch-data-from-the-server)
+
 ## Step 1: Make a HTML/CSS template of this app.
 
 On the branch "html-template";
