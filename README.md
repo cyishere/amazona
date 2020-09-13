@@ -134,7 +134,7 @@ Create the actions in `./actions/productActions.js`, with the function named `li
 On the branch "add-redux-to-details";
 
 - refactor product details to Redux version;
-- inplement `handleAddToCart()`;
+- implement `handleAddToCart()`;
 
 Because of the state has 3 properties, in the reducer the initial state is `state={ product: {} }` to present object like this:
 
