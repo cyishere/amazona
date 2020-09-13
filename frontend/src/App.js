@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 16:51:58
+ * @Last Modified time: 2020-09-13 17:26:46
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(listProducts());
-  }, []);
+  }, [dispatch]);
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
