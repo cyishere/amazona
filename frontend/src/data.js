@@ -1,6 +1,7 @@
 export default {
   products: [
     {
+      _id: "1",
       name: "Black Dress",
       category: "Dresses",
       image: "/images/d1.jpeg",
@@ -10,6 +11,7 @@ export default {
       numReviews: 10,
     },
     {
+      _id: "2",
       name: "White Dress",
       category: "Dresses",
       image: "/images/d2.jpeg",
@@ -19,6 +21,7 @@ export default {
       numReviews: 8,
     },
     {
+      _id: "3",
       name: "Best Pants",
       category: "Pants",
       image: "/images/d3.jpeg",
@@ -28,6 +31,7 @@ export default {
       numReviews: 7,
     },
     {
+      _id: "4",
       name: "White Pants",
       category: "Pants",
       image: "/images/d4.jpeg",
@@ -35,6 +39,16 @@ export default {
       brand: "Cate Blanchett",
       rating: 4.9,
       numReviews: 15,
+    },
+    {
+      _id: "5",
+      name: "Peacock Dress",
+      category: "Dresses",
+      image: "/images/d5.jpg",
+      price: 60,
+      brand: "Armani",
+      rating: 4.5,
+      numReviews: 10,
     },
   ],
 };
