@@ -73,7 +73,7 @@ then add the `.babelrc` file at the root of directory.
 }
 ```
 
-And add this script to `package.json` file, make sure "`nodemon` only watch the `/backend` directory and `execute` the following command.
+And add this script to `package.json` file, make sure "`nodemon` only watch the `/backend` directory and `execute` the following command."
 
 ```json
 {
