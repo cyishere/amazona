@@ -2,15 +2,15 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:14:04
  * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 14:11:56
+ * @Last Modified time: 2020-09-13 15:42:52
  */
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 
-const ProductScreen = ({ data }) => {
+const ProductScreen = ({ products }) => {
   const { id } = useParams();
 
-  const product = data.products.find((item) => item._id === id);
+  const product = products.find((item) => item._id === id);
 
   return (
     <div>

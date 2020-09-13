@@ -2,15 +2,15 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:14:01
  * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 13:26:54
+ * @Last Modified time: 2020-09-13 15:42:37
  */
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomeScreen = ({ data }) => {
+const HomeScreen = ({ products }) => {
   return (
     <ul className="products">
-      {data.products.map((product) => (
+      {products.map((product) => (
         <li key={product._id}>
           <div className="product">
             <Link to={`/product/${product._id}`}>

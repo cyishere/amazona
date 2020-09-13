@@ -82,3 +82,9 @@ And add this script to `package.json` file, make sure "`nodemon` only watch the 
   }
 }
 ```
+
+## Step 6: Fetch data from the server.
+
+On the branch "fetch-server-data";
+
+Use React Hook & `axios`. First, set proxy in `/frontend/package.json`.

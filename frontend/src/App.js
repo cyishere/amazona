@@ -2,15 +2,26 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 13:47:40
+ * @Last Modified time: 2020-09-13 15:42:40
  */
-import React from "react";
-import data from "./data";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import ProductScreen from "./components/ProductScreen";
 
-function App() {
+const App = () => {
+  const [products, setProducts] = useState([]);
+
+  const fetchData = async () => {
+    const { data } = await axios.get("/api/products");
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
   };
@@ -53,10 +64,10 @@ function App() {
         <main className="main">
           <div className="content">
             <Route path="/product/:id">
-              <ProductScreen data={data} />
+              <ProductScreen products={products} />
             </Route>
             <Route exact path="/">
-              <HomeScreen data={data} />
+              <HomeScreen products={products} />
             </Route>
           </div>
         </main>
@@ -65,6 +76,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
