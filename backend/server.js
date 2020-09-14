@@ -1,13 +1,32 @@
 /*
  * @Author: chen yang
  * @Date: 2020-09-13 14:53:09
- * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 18:26:33
+ * @Last Modified by: Chen Yang
+ * @Last Modified time: 2020-09-14 15:36:07
  */
 import express from "express";
 import data from "./data";
+import config from "./config";
+import mongoose from "mongoose";
+import userRoute from "./routes/userRoute";
+
+const mongodbUrl = config.MONGO_URI;
+mongoose
+  .connect(mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => {
+    console.log("Connected to MongoDB.");
+  })
+  .catch((error) =>
+    console.log("Error connnecting to MongoDB:", error.message)
+  );
 
 const app = express();
+
+app.use("/api/users", userRoute);
 
 app.get("/api/products", (req, res) => {
   res.send(data.products);
