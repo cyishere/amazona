@@ -11,6 +11,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 7: Manage state with Redux](#step-7-manage-state-with-redux)
 - [Step 8: Add Reduct to Details](#step-8-add-reduct-to-details)
 - [Step 9: Add shopping cart sreen](#step-9-add-shopping-cart-sreen)
+- [Step 10: Connect to MongoDB](#step-10-connect-to-mongodb)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -166,3 +167,7 @@ We need to save items in the cart to the cookies, so we when refresh the page, t
 ```bash
 yarn add js-cookie
 ```
+
+## Step 10: Connect to MongoDB
+
+Add models and routes in backend as always.
