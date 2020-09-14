@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import HomeScreen from "./components/HomeScreen";
 import ProductScreen from "./components/ProductScreen";
+import CartScreen from "./components/CartScreen";
 import { listProducts } from "./actions/productActions";
 
 const App = () => {
@@ -71,6 +72,7 @@ const App = () => {
             <Route path="/product/:id">
               <ProductScreen products={products} />
             </Route>
+            <Route path="/cart/:id?" component={CartScreen} />
             <Route exact path="/">
               <HomeScreen products={products} loading={loading} error={error} />
             </Route>

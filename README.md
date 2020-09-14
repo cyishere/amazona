@@ -10,6 +10,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 6: Fetch data from the server.](#step-6-fetch-data-from-the-server)
 - [Step 7: Manage state with Redux](#step-7-manage-state-with-redux)
 - [Step 8: Add Reduct to Details](#step-8-add-reduct-to-details)
+- [Step 9: Add shopping cart sreen](#step-9-add-shopping-cart-sreen)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -144,4 +145,24 @@ state = {
   loading: false,
   error: "",
 };
+```
+
+## Step 9: Add shopping cart sreen
+
+The `?` in "path" means the "id" is optional.
+
+```jsx
+<Route path="/cart/:id?" component={CartScreen} />
+```
+
+In the cart action bar, for some reason the `item.qty` in the code below in **NOT** a number, so I put a `+` symbol in front it to convert it to **number**.
+
+```js
+cartItems.reduce((sum, item) => sum + +item.qty, 0);
+```
+
+We need to save items in the cart to the cookies, so we when refresh the page, the items in the cart will remain the same as before.
+
+```bash
+yarn add js-cookie
 ```
