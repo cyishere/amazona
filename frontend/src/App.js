@@ -1,8 +1,8 @@
 /*
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
- * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 17:26:46
+ * @Last Modified by: Chen Yang
+ * @Last Modified time: 2020-09-15 14:48:47
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -10,10 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import HomeScreen from "./components/HomeScreen";
 import ProductScreen from "./components/ProductScreen";
 import CartScreen from "./components/CartScreen";
+import SigninScreen from "./components/SigninScreen";
 import { listProducts } from "./actions/productActions";
+import RegisterScreen from "./components/RegisterScreen";
 
 const App = () => {
   // const [products, setProducts] = useState([]);
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
@@ -48,7 +53,14 @@ const App = () => {
           </div>
           <div className="header-links">
             <Link to="/cart">Cart</Link>
-            <Link to="/signin">Signin</Link>
+            {userInfo ? (
+              <>
+                <Link to="/profile">{userInfo.name}</Link>
+                <Link to="/logout">Signout</Link>
+              </>
+            ) : (
+              <Link to="/signin">Signin</Link>
+            )}
           </div>
         </header>
 
@@ -69,6 +81,8 @@ const App = () => {
 
         <main className="main">
           <div className="content">
+            <Route path="/signin" component={SigninScreen} />
+            <Route path="/register" component={RegisterScreen} />
             <Route path="/product/:id">
               <ProductScreen products={products} />
             </Route>

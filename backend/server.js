@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 14:53:09
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-14 15:36:07
+ * @Last Modified time: 2020-09-15 14:03:19
  */
 import express from "express";
 import data from "./data";
@@ -25,6 +25,8 @@ mongoose
   );
 
 const app = express();
+
+app.use(express.json());
 
 app.use("/api/users", userRoute);
 

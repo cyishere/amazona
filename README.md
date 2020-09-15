@@ -1,5 +1,9 @@
 # Amazona
 
+### To Do:
+
+- []Logout;
+
 Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in 5 Hours [2020]](https://www.youtube.com/watch?v=Fy9SdZLBTOo)
 
 - [Step 1: Make a HTML/CSS template of this app](#step-1-make-a-htmlcss-template-of-this-app)
@@ -171,3 +175,22 @@ yarn add js-cookie
 ## Step 10: Connect to MongoDB
 
 Add models and routes in backend as always.
+
+## Step 11: Signin and register user
+
+**Need to set cooke.**
+
+Set `JWT_SECRET` in `.env`.
+
+- Define functions in UI component, in the functions dispatch the "action";
+- Define the actions;
+- Define the reducers;
+- Add the reducers to the `store`;
+
+Don't forget to add & change these in `store.js`:
+
+```js
+const userInfo = Cookie.getJSON("userInfo") || [];
+
+const initialState = { cart: { cartItems }, userSignin: { userInfo } };
+```
