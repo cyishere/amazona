@@ -196,3 +196,27 @@ const userInfo = Cookie.getJSON("userInfo") || [];
 
 const initialState = { cart: { cartItems }, userSignin: { userInfo } };
 ```
+
+If the method has parameters, when you call it directly in the `onClick` or some other handlers, it will automatically be called after the component render. So when we call it, we need to put it in a **callback function**, like this:
+
+```jsx
+const handleSubmit = (product) => {
+  console.log(product);
+};
+
+return <button onClick={() => handleSubmit(product)}>Submit</button>;
+```
+
+**ATTENTION**
+
+We NEED to put `successSave` and `successDelete` in the `useEffect`'s 2nd array parameter, then after create/update/delete product, the view will automatically update.
+
+```js
+useEffect(() => {
+  if (successSave) {
+    setModalVisible(false);
+  }
+
+  dispatch(listProducts());
+}, [successSave, successDelete]);
+```

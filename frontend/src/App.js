@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 14:48:47
+ * @Last Modified time: 2020-09-15 18:06:20
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -13,6 +13,7 @@ import CartScreen from "./components/CartScreen";
 import SigninScreen from "./components/SigninScreen";
 import { listProducts } from "./actions/productActions";
 import RegisterScreen from "./components/RegisterScreen";
+import ProductsScreen from "./components/ProductsScreen";
 
 const App = () => {
   // const [products, setProducts] = useState([]);
@@ -81,6 +82,7 @@ const App = () => {
 
         <main className="main">
           <div className="content">
+            <Route path="/products" component={ProductsScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/product/:id">
