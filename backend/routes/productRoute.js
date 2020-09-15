@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 17:19:13
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 19:19:21
+ * @Last Modified time: 2020-09-15 22:26:10
  */
 import express from "express";
 import Product from "../models/productModel";
@@ -15,10 +15,8 @@ router.get("/", async (req, res) => {
   res.send(products);
 });
 
-router.get("/:id", (req, res) => {
-  const product = data.products.find(
-    (product) => product._id === req.params.id
-  );
+router.get("/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
 
   if (product) {
     res.send(product);
