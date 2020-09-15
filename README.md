@@ -3,6 +3,8 @@
 ### To Do:
 
 - [ ] Logout;
+- [ ] Double check the `passconf`;
+- [ ] Encrypt password;
 
 Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in 5 Hours [2020]](https://www.youtube.com/watch?v=Fy9SdZLBTOo)
 
