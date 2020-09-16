@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 13:52:29
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 14:47:48
+ * @Last Modified time: 2020-09-16 21:57:58
  */
 import {
   USER_SIGNIN_REQUEST,
@@ -11,6 +11,9 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
+  USER_LOGOUT_REQUEST,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_FAIL,
 } from "../constants/userConstants";
 
 const userSigninReducer = (state = {}, action) => {
@@ -45,4 +48,20 @@ const userRegisterReducer = (state = {}, action) => {
   }
 };
 
-export { userSigninReducer, userRegisterReducer };
+const userLogoutReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_LOGOUT_REQUEST:
+      return { loading: true };
+
+    case USER_LOGOUT_SUCCESS:
+      return { loading: false };
+
+    case USER_LOGOUT_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export { userSigninReducer, userRegisterReducer, userLogoutReducer };

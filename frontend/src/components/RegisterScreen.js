@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 14:37:13
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 15:07:22
+ * @Last Modified time: 2020-09-16 21:58:42
  */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ const RegisterScreen = (props) => {
     if (userInfo) {
       props.history.push("/");
     }
-  }, [userInfo]);
+  }, [userInfo, props.history]);
 
   return (
     <div className="form">

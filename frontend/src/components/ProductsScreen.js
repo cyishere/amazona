@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 17:27:46
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 19:54:53
+ * @Last Modified time: 2020-09-16 21:58:58
  */
 // TODO:
 // 1. ✅ productList;
@@ -16,8 +16,9 @@ import {
   listProducts,
   deleteProduct,
 } from "../actions/productActions";
+import Cookies from "js-cookie";
 
-const ProductsScreen = () => {
+const ProductsScreen = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -47,13 +48,29 @@ const ProductsScreen = () => {
 
   const dispatch = useDispatch();
 
+  const userInfo = Cookies.get("userInfo");
+
   useEffect(() => {
+    // console.log("userInfo in sigin page:", userInfo);
+    if (Object.keys(userInfo).length === 0) {
+      props.history.push("/");
+    }
+
     if (successSave) {
       setModalVisible(false);
     }
 
+    if (successDelete) {
+      document.querySelector(".notification").classList.remove("hide");
+      setTimeout(() => {
+        document.querySelector(".notification").classList.add("hide");
+      }, 3000);
+    }
+
     dispatch(listProducts());
-  }, [successSave, successDelete]);
+
+    // console.log("successDelete", successDelete);
+  }, [successSave, successDelete, userInfo, dispatch, props.history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,9 +102,6 @@ const ProductsScreen = () => {
 
   const handleDelete = (productId) => {
     dispatch(deleteProduct(productId));
-    setTimeout(() => {
-      document.querySelector(".notification").remove();
-    }, 3000);
   };
 
   return (
@@ -96,9 +110,9 @@ const ProductsScreen = () => {
         <h3>Products</h3>
         {loadingDelete && <div>Deleting...</div>}
         {errorDelete && <div className="red">{error}</div>}
-        {successDelete && (
-          <div className="green notification">Delete successfully!</div>
-        )}
+
+        <div className="green notification hide">Delete successfully!</div>
+
         <button className="button primary" onClick={() => handleOpenModal({})}>
           Create Product
         </button>

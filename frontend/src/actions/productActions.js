@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 16:37:44
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 19:41:30
+ * @Last Modified time: 2020-09-16 21:35:58
  */
 import {
   PRODUCT_LIST_FAIL,
@@ -16,6 +16,7 @@ import {
   PRODUCT_SAVE_FAIL,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_RESET,
   PRODUCT_DELETE_FAIL,
 } from "../constants/productConstants";
 import axios from "axios";
@@ -83,6 +84,7 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
+
     dispatch({ type: PRODUCT_DELETE_REQUEST, productId });
 
     const { data } = await axios.delete(`/api/products/${productId}`, {
@@ -92,6 +94,8 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     });
 
     dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data });
+
+    dispatch({ type: PRODUCT_DELETE_RESET, payload: false });
   } catch (error) {
     dispatch({ type: PRODUCT_DELETE_FAIL, payload: error.message });
   }

@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 18:06:20
+ * @Last Modified time: 2020-09-16 22:07:28
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -14,8 +14,10 @@ import SigninScreen from "./components/SigninScreen";
 import { listProducts } from "./actions/productActions";
 import RegisterScreen from "./components/RegisterScreen";
 import ProductsScreen from "./components/ProductsScreen";
+import { logout } from "./actions/userActions";
+import { PromiseProvider } from "mongoose";
 
-const App = () => {
+const App = (props) => {
   // const [products, setProducts] = useState([]);
 
   const userSignin = useSelector((state) => state.userSignin);
@@ -23,6 +25,8 @@ const App = () => {
 
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
+
+  // const userLogout = useSelector((state) => state.userLogout);
   const dispatch = useDispatch();
 
   // const fetchData = async () => {
@@ -42,6 +46,14 @@ const App = () => {
     document.querySelector(".sidebar").classList.remove("open");
   };
 
+  const handleSignout = () => {
+    // Cookies.remove("userInfo");
+    dispatch(logout("userInfo"));
+    props.history.push("/");
+  };
+
+  // console.log("userInfo", userInfo);
+
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -54,10 +66,11 @@ const App = () => {
           </div>
           <div className="header-links">
             <Link to="/cart">Cart</Link>
-            {userInfo ? (
+            {userInfo.hasOwnProperty("name") ? (
               <>
                 <Link to="/profile">{userInfo.name}</Link>
-                <Link to="/logout">Signout</Link>
+                <Link to="/products">Products</Link>
+                <span onClick={handleSignout}>Signout</span>
               </>
             ) : (
               <Link to="/signin">Signin</Link>

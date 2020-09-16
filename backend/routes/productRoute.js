@@ -2,29 +2,45 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 17:19:13
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 22:26:10
+ * @Last Modified time: 2020-09-16 18:24:08
  */
 import express from "express";
 import Product from "../models/productModel";
-import data from "../data";
+import { isAdmin, isAuth } from "../util";
 
 const router = express.Router();
 
+/**
+ * GET all
+ */
 router.get("/", async (req, res) => {
   const products = await Product.find({});
   res.send(products);
 });
 
+/**
+ * GET one
+ */
 router.get("/:id", async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  try {
+    const product = await Product.findById(req.params.id);
 
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ msg: "Product Not Found." });
+    if (product) {
+      return res.json(product);
+    } else {
+      return res.status(404).json({ msg: "Product Not Found." });
+    }
+  } catch (error) {
+    // console.log("error.name:", error.name); // CastError
+    // const msg = error.name;
+    console.log("error.message:", error.message);
+    return res.status(400).json({ msg: error.message });
   }
 });
 
+/**
+ * POST one
+ */
 router.post("/", async (req, res) => {
   const product = new Product({
     name: req.body.name,
@@ -49,7 +65,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+/**
+ * PUT one
+ */
+router.put("/:id", isAuth, isAdmin, async (req, res) => {
   const body = req.body;
   const id = req.params.id;
 
@@ -66,14 +85,17 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+/**
+ * DELETE one
+ */
+router.delete("/:id", isAuth, isAdmin, async (req, res) => {
   const productToRemove = await Product.findById(req.params.id);
 
   if (productToRemove) {
     await productToRemove.remove();
     res.status(204).send({ msg: "Product Deleted." });
   } else {
-    res.send("Error in deleting.");
+    res.status(404).send("No product to delete.");
   }
 });
 

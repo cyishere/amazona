@@ -2,6 +2,7 @@
 
 ### To Do:
 
+- [ ] ❗❗❗The validation after sigin & logout have some problems...
 - [ ] Logout;
 - [ ] Double check the `passconf`;
 - [ ] Encrypt password;
@@ -18,6 +19,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 8: Add Reduct to Details](#step-8-add-reduct-to-details)
 - [Step 9: Add shopping cart sreen](#step-9-add-shopping-cart-sreen)
 - [Step 10: Connect to MongoDB](#step-10-connect-to-mongodb)
+- [Step 11: Signin and register user](#step-11-signin-and-register-user)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -197,6 +199,10 @@ const userInfo = Cookie.getJSON("userInfo") || [];
 const initialState = { cart: { cartItems }, userSignin: { userInfo } };
 ```
 
+## Step 12: Manage Products
+
+On the branch "manage-products";
+
 If the method has parameters, when you call it directly in the `onClick` or some other handlers, it will automatically be called after the component render. So when we call it, we need to put it in a **callback function**, like this:
 
 ```jsx
@@ -219,4 +225,12 @@ useEffect(() => {
 
   dispatch(listProducts());
 }, [successSave, successDelete]);
+```
+
+Also add authentication methods as middlewares in the `./backend/util.js`, and put them as parameters in the routes when you need authentication.
+
+```js
+router.delete("/:id", isAuth, isAdmin, async (req, res) => {
+  // ...
+}
 ```

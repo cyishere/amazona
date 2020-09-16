@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 16:29:46
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 19:27:06
+ * @Last Modified time: 2020-09-16 21:37:27
  */
 export const PRODUCT_LIST_REQUEST = "PRODUCT_LIST_REQUEST";
 export const PRODUCT_LIST_SUCCESS = "PRODUCT_LIST_SUCCESS";
@@ -18,4 +18,5 @@ export const PRODUCT_SAVE_FAIL = "PRODUCT_SAVE_FAIL";
 
 export const PRODUCT_DELETE_REQUEST = "PRODUCT_DELETE_REQUEST";
 export const PRODUCT_DELETE_SUCCESS = "PRODUCT_DELETE_SUCCESS";
+export const PRODUCT_DELETE_RESET = "PRODUCT_DELETE_RESET";
 export const PRODUCT_DELETE_FAIL = "PRODUCT_DELETE_FAIL";

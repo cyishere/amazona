@@ -53,6 +53,10 @@ a:hover {
 .header-links a:hover {
   color: #ff8000;
 }
+.header-links span {
+  margin-left: 1rem;
+  cursor: pointer;
+}
 
 .main {
   grid-area: main;
@@ -321,4 +325,9 @@ th {
 }
 tbody > tr:nth-child(odd) {
   background-color: #f0f0f0;
+}
+
+/* Others */
+.hide {
+  display: none;
 }

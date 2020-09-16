@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 16:16:26
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 19:32:03
+ * @Last Modified time: 2020-09-16 21:36:45
  */
 import {
   PRODUCT_LIST_FAIL,
@@ -16,6 +16,7 @@ import {
   PRODUCT_SAVE_FAIL,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_RESET,
   PRODUCT_DELETE_FAIL,
 } from "../constants/productConstants";
 
@@ -54,7 +55,7 @@ const productDetailsReducer = (state = { product: {} }, action) => {
 const productSaveReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case PRODUCT_SAVE_REQUEST:
-      return { loading: true };
+      return { loading: true, success: false };
 
     case PRODUCT_SAVE_SUCCESS:
       return { loading: false, product: action.payload, success: true };
@@ -74,6 +75,9 @@ const productDeleteReducer = (state = { product: {} }, action) => {
 
     case PRODUCT_DELETE_SUCCESS:
       return { loading: false, product: action.payload, success: true };
+
+    case PRODUCT_DELETE_RESET:
+      return { success: false };
 
     case PRODUCT_DELETE_FAIL:
       return { loading: false, error: action.payload };

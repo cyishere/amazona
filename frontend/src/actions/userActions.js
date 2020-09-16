@@ -2,10 +2,10 @@
  * @Author: chen yang
  * @Date: 2020-09-15 13:40:09
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 14:43:15
+ * @Last Modified time: 2020-09-16 21:57:34
  */
 import axios from "axios";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 import {
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -13,6 +13,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_LOGOUT_REQUEST,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_FAIL,
 } from "../constants/userConstants";
 
 const signin = (email, password) => async (dispatch) => {
@@ -23,7 +26,7 @@ const signin = (email, password) => async (dispatch) => {
 
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
 
-    Cookie.set("userInfo", JSON.stringify(data));
+    Cookies.set("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
   }
@@ -41,10 +44,22 @@ const register = (name, email, password) => async (dispatch) => {
 
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
 
-    Cookie.set("userInfo", JSON.stringify(data));
+    Cookies.set("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
   }
 };
 
-export { signin, register };
+const logout = (cookieName) => (dispatch) => {
+  try {
+    dispatch({ type: USER_LOGOUT_REQUEST, payload: cookieName });
+
+    Cookies.remove(cookieName);
+
+    dispatch({ type: USER_LOGOUT_SUCCESS });
+  } catch (error) {
+    dispatch({ type: USER_LOGOUT_FAIL, payload: error.message });
+  }
+};
+
+export { signin, register, logout };
