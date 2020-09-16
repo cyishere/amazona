@@ -20,6 +20,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 9: Add shopping cart sreen](#step-9-add-shopping-cart-sreen)
 - [Step 10: Connect to MongoDB](#step-10-connect-to-mongodb)
 - [Step 11: Signin and register user](#step-11-signin-and-register-user)
+- [Step 12: Manage Products](#step-12-manage-products)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
