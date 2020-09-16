@@ -1,8 +1,8 @@
 /*
  * @Author: chen yang
  * @Date: 2020-09-13 16:16:26
- * @Last Modified by: chen yang
- * @Last Modified time: 2020-09-13 18:29:43
+ * @Last Modified by: Chen Yang
+ * @Last Modified time: 2020-09-16 21:36:45
  */
 import {
   PRODUCT_LIST_FAIL,
@@ -11,12 +11,19 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
+  PRODUCT_SAVE_REQUEST,
+  PRODUCT_SAVE_SUCCESS,
+  PRODUCT_SAVE_FAIL,
+  PRODUCT_DELETE_REQUEST,
+  PRODUCT_DELETE_SUCCESS,
+  PRODUCT_DELETE_RESET,
+  PRODUCT_DELETE_FAIL,
 } from "../constants/productConstants";
 
 const productListReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true };
+      return { loading: true, products: [] };
 
     case PRODUCT_LIST_SUCCESS:
       return { loading: false, products: action.payload };
@@ -45,4 +52,44 @@ const productDetailsReducer = (state = { product: {} }, action) => {
   }
 };
 
-export { productListReducer, productDetailsReducer };
+const productSaveReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case PRODUCT_SAVE_REQUEST:
+      return { loading: true, success: false };
+
+    case PRODUCT_SAVE_SUCCESS:
+      return { loading: false, product: action.payload, success: true };
+
+    case PRODUCT_SAVE_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+const productDeleteReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case PRODUCT_DELETE_REQUEST:
+      return { loading: true };
+
+    case PRODUCT_DELETE_SUCCESS:
+      return { loading: false, product: action.payload, success: true };
+
+    case PRODUCT_DELETE_RESET:
+      return { success: false };
+
+    case PRODUCT_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export {
+  productListReducer,
+  productDetailsReducer,
+  productSaveReducer,
+  productDeleteReducer,
+};

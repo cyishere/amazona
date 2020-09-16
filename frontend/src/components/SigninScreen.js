@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-15 13:18:09
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-15 14:08:05
+ * @Last Modified time: 2020-09-16 22:06:06
  */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -21,13 +21,15 @@ const SigninScreen = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
+    props.history.push("/");
   };
 
   useEffect(() => {
-    if (userInfo) {
+    // console.log("userInfo in sigin page:", userInfo);
+    if (userInfo.hasOwnProperty("name")) {
       props.history.push("/");
     }
-  }, [userInfo]);
+  }, [userInfo, props.history]);
 
   return (
     <div className="form">
