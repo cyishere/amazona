@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 17:19:13
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-16 18:24:08
+ * @Last Modified time: 2020-09-17 16:46:21
  */
 import express from "express";
 import Product from "../models/productModel";
@@ -26,15 +26,15 @@ router.get("/:id", async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      return res.json(product);
+      return res.send(product);
     } else {
-      return res.status(404).json({ msg: "Product Not Found." });
+      return res.status(404).send({ msg: "Product Not Found." });
     }
   } catch (error) {
     // console.log("error.name:", error.name); // CastError
     // const msg = error.name;
     console.log("error.message:", error.message);
-    return res.status(400).json({ msg: error.message });
+    return res.status(400).send({ msg: error.message });
   }
 });
 

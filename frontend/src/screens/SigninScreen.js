@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-15 13:18:09
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-16 22:06:06
+ * @Last Modified time: 2020-09-17 16:58:32
  */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -18,6 +18,10 @@ const SigninScreen = (props) => {
 
   const dispatch = useDispatch();
 
+  const redirect = props.location.search
+    ? props.location.search.split("=")[1]
+    : "/";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signin(email, password));
@@ -27,9 +31,9 @@ const SigninScreen = (props) => {
   useEffect(() => {
     // console.log("userInfo in sigin page:", userInfo);
     if (userInfo.hasOwnProperty("name")) {
-      props.history.push("/");
+      props.history.push(redirect);
     }
-  }, [userInfo, props.history]);
+  }, [userInfo, props.history, redirect]);
 
   return (
     <div className="form">
@@ -69,7 +73,14 @@ const SigninScreen = (props) => {
           </li>
           <li>New to Amazona?</li>
           <li>
-            <Link to="/register" className="button secondary text-center">
+            <Link
+              to={
+                redirect === "/"
+                  ? "/register"
+                  : `/register?redirect=${redirect}`
+              }
+              className="button secondary text-center"
+            >
               Create your own Amazona account
             </Link>
           </li>

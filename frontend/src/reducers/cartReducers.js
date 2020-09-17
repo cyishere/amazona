@@ -2,11 +2,19 @@
  * @Author: chen yang
  * @Date: 2020-09-14 12:43:26
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-14 13:39:24
+ * @Last Modified time: 2020-09-17 17:58:39
  */
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SAVE_PAYMENT,
+  CART_SAVE_SHIPPING,
+} from "../constants/cartConstants";
 
-const cartReducer = (state = { cartItems: [] }, action) => {
+const cartReducer = (
+  state = { cartItems: [], shipping: {}, payment: {} },
+  action
+) => {
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
@@ -24,6 +32,12 @@ const cartReducer = (state = { cartItems: [] }, action) => {
       return {
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       };
+
+    case CART_SAVE_SHIPPING:
+      return { ...state, shipping: action.payload };
+
+    case CART_SAVE_PAYMENT:
+      return { ...state, payment: action.payload };
 
     default:
       return state;

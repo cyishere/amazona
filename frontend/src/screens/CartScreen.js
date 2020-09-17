@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-14 10:45:01
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-14 13:54:52
+ * @Last Modified time: 2020-09-17 16:58:09
  */
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ const CartScreen = (props) => {
   };
 
   const handleCheckout = () => {
-    props.history.push("/sigin?redirect=shipping");
+    props.history.push("/signin?redirect=shipping");
   };
 
   useEffect(() => {
