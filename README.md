@@ -21,6 +21,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 10: Connect to MongoDB](#step-10-connect-to-mongodb)
 - [Step 11: Signin and register user](#step-11-signin-and-register-user)
 - [Step 12: Manage Products](#step-12-manage-products)
+- [Step 13: Checkout Wizard](#step-13-checkout-wizard)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
@@ -235,3 +236,9 @@ router.delete("/:id", isAuth, isAdmin, async (req, res) => {
   // ...
 }
 ```
+
+## Step 13: Checkout Wizard
+
+On the branch "checkout-wizard";
+
+Refactor the structor of frontend.

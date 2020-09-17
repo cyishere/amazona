@@ -2,20 +2,22 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-16 22:07:28
+ * @Last Modified time: 2020-09-17 18:07:38
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import HomeScreen from "./components/HomeScreen";
-import ProductScreen from "./components/ProductScreen";
-import CartScreen from "./components/CartScreen";
-import SigninScreen from "./components/SigninScreen";
+import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
 import { listProducts } from "./actions/productActions";
-import RegisterScreen from "./components/RegisterScreen";
-import ProductsScreen from "./components/ProductsScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProductsScreen from "./screens/ProductsScreen";
 import { logout } from "./actions/userActions";
-import { PromiseProvider } from "mongoose";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 const App = (props) => {
   // const [products, setProducts] = useState([]);
@@ -96,12 +98,15 @@ const App = (props) => {
         <main className="main">
           <div className="content">
             <Route path="/products" component={ProductsScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/payment" component={PaymentScreen} />
+            <Route path="/placeorder" component={PlaceOrderScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/product/:id">
               <ProductScreen products={products} />
             </Route>
-            <Route path="/cart/:id?" component={CartScreen} />
             <Route exact path="/">
               <HomeScreen products={products} loading={loading} error={error} />
             </Route>

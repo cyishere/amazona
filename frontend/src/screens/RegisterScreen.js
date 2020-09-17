@@ -2,7 +2,7 @@
  * @Author: Chen Yang
  * @Date: 2020-09-15 14:37:13
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-16 21:58:42
+ * @Last Modified time: 2020-09-17 16:58:33
  */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -20,6 +20,10 @@ const RegisterScreen = (props) => {
 
   const dispatch = useDispatch();
 
+  const redirect = props.location.search
+    ? props.location.search.split("=")[1]
+    : "/";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(register(name, email, password));
@@ -27,9 +31,9 @@ const RegisterScreen = (props) => {
 
   useEffect(() => {
     if (userInfo) {
-      props.history.push("/");
+      props.history.push(redirect);
     }
-  }, [userInfo, props.history]);
+  }, [userInfo, props.history, redirect]);
 
   return (
     <div className="form">
@@ -89,7 +93,10 @@ const RegisterScreen = (props) => {
           </li>
           <li>Already have one?</li>
           <li>
-            <Link to="/signin" className="button secondary text-center">
+            <Link
+              to={redirect === "/" ? "/signin" : `/signin?redirect=${redirect}`}
+              className="button secondary text-center"
+            >
               Sign In
             </Link>
           </li>
