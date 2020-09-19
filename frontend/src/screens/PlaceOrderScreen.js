@@ -2,17 +2,23 @@
  * @Author: Chen Yang
  * @Date: 2020-09-17 17:37:11
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-17 18:08:26
+ * @Last Modified time: 2020-09-19 13:32:27
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { createOrder } from "../actions/orderActions";
 
 const PlaceOrderScreen = (props) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems, shipping, payment } = cart;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { success, order } = orderCreate;
+
+  const dispatch = useDispatch();
 
   if (!shipping.address) {
     props.history.push("/shipping");
@@ -28,7 +34,27 @@ const PlaceOrderScreen = (props) => {
   const taxPrice = 0.15 * itemsPrice;
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
-  const handlePlaceOrder = () => {};
+  const handlePlaceOrder = () => {
+    // create an order
+    dispatch(
+      createOrder({
+        orderItems: cartItems,
+        shipping,
+        payment,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (success) {
+      props.history.push(`/order/${order._id}`);
+      // console.log("order", order);
+    }
+  }, [success, props.history]);
 
   return (
     <div>
