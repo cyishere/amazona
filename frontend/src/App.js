@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 13:13:58
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-17 18:07:38
+ * @Last Modified time: 2020-09-19 13:19:53
  */
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -18,6 +18,7 @@ import { logout } from "./actions/userActions";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 const App = (props) => {
   // const [products, setProducts] = useState([]);
@@ -97,16 +98,17 @@ const App = (props) => {
 
         <main className="main">
           <div className="content">
+            <Route path="/order/:id" component={OrderScreen} />
             <Route path="/products" component={ProductsScreen} />
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/payment" component={PaymentScreen} />
             <Route path="/placeorder" component={PlaceOrderScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/register" component={RegisterScreen} />
-            <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/product/:id">
               <ProductScreen products={products} />
             </Route>
+            <Route path="/cart/:id?" component={CartScreen} />
             <Route exact path="/">
               <HomeScreen products={products} loading={loading} error={error} />
             </Route>

@@ -2,7 +2,7 @@
  * @Author: chen yang
  * @Date: 2020-09-13 16:13:41
  * @Last Modified by: Chen Yang
- * @Last Modified time: 2020-09-17 18:00:34
+ * @Last Modified time: 2020-09-19 12:37:48
  */
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import {
@@ -19,6 +19,11 @@ import {
   userRegisterReducer,
   userSigninReducer,
 } from "./reducers/userReducers";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+} from "./reducers/orderReducers";
 
 const cartItems = Cookie.getJSON("cartItems") || [];
 const userInfo = Cookie.getJSON("userInfo") || {};
@@ -36,6 +41,9 @@ const reducer = combineReducers({
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   userLogout: userLogoutReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderCreate: orderCreateReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
