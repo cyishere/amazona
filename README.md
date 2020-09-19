@@ -22,7 +22,7 @@ Learning by doing from this tutorial: [React & Node Tutorial - Full ECommerce in
 - [Step 11: Signin and register user](#step-11-signin-and-register-user)
 - [Step 12: Manage Products](#step-12-manage-products)
 - [Step 13: Checkout Wizard](#step-13-checkout-wizard)
-- [Step 14: Add "create order" & "connect to paypal"]()
+- [Step 14: Add "create order" & "connect to paypal"](#step-14-add-create-order--connect-to-paypal)
 
 ## Step 1: Make a HTML/CSS template of this app.
 
